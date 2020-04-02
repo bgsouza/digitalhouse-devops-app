@@ -1,0 +1,29 @@
+{
+  "name": "digitalhouse-devops-app",
+  "version": "1.0.0",
+  "description": "NodeApp que faz upload em um bucket s3",
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.651.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "multer": "^1.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bgsouza/digitalhouse-devops-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bgsouza/digitalhouse-devops-app/issues"
+  },
+  "homepage": "https://github.com/bgsouza/digitalhouse-devops-app#readme"
+}

@@ -1,0 +1,47 @@
+<html>
+
+  <head>
+    <title>App de fotos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+
+  <body>
+
+    <main class="container"> 
+      <h1>Enviar Arquivo</h1>
+      <div class="row">
+        <div class="col-md-8 d-flex align-items-center">
+          <form action="/file-upload" name="upload" method="post" enctype="multipart/form-data" onsubmit="enviar();">
+            <div class="custom-file" id="customFile" lang="es">
+              <input type="file" class="custom-file-input" id="imageUpload" name="imageUpload" accept="image/*" aria-describedby="fileHelp" required>
+              <label class="custom-file-label" for="exampleInputFile">
+                Select file...
+              </label>
+            </div>
+
+            <div>
+              <button type="submit" name="enviar" id="btn-enviar">Enviar Foto</button>
+              <div class="alert alert-primary d-none" role="alert">
+                Fazendo Upload...
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+      
+    </main>
+  
+    <script>
+
+      function enviar() {
+        document.querySelector('#btn-enviar').disabled=true
+        document.querySelector('.alert').classList.remove('d-none')
+        document.forms["upload"].submit();
+        return false;
+      }
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
