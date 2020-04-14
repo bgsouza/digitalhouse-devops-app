@@ -61,7 +61,8 @@ app.get('/api/v1/healthcheck', function(req, res) {
     res.send({
         "status": {
             "app": true,
-            "versao": process.env.VERSION
+            "versao": process.env.VERSION,
+            "ambiente": process.env.NODE_ENV
         }
     });
 });
