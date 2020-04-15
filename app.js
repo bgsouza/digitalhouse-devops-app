@@ -44,7 +44,7 @@ app.post('/file-upload', upload.single('imageUpload'), (req, res) => {
     const params = {
         Bucket: process.env.BUCKET_NAME, // pass your bucket name
         // ACL: 'public-read',
-        Key: `teste/${file}`,
+        Key: `${file}`,
         Body: fs.readFileSync(req.file.path)
     };
     s3.putObject(params, function(s3Err, data) {
