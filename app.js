@@ -6,6 +6,7 @@ const AWS = require('aws-sdk')
 var bodyParser = require('body-parser')
 var multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })
+var expressLayouts = require('express-ejs-layouts')
 
 dotenv.config();
 
@@ -31,11 +32,31 @@ var express = require('express'),
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.set('view engine', 'ejs')    // Setamos que nossa engine será o ejs
+app.use(expressLayouts)          // Definimos que vamos utilizar o express-ejs-layouts na nossa aplicação
 app.listen(port);
 
 
+getFilesInBucket = async () => {
+  return new Promise((resolve, reject) => { 
+        const params = {
+            Bucket: process.env.BUCKET_NAME, // pass your bucket name
+            Delimiter: '/'
+        };
+        s3.listObjects(params, function (err, data) {
+            if(err) { reject(err) }
+            return resolve(data);
+        });
+    })
+}
 /* Rotas */
+app.get('/', function(req,res){
+    files = getFilesInBucket();
+    console.log(`Files: ${files}`)
+    res.render('index', {data:{ambiente: process.env.NODE_ENV}});
+}); 
+
 app.post('/file-upload', upload.single('imageUpload'), (req, res) => {
 
     const file = (req.file.originalname);
