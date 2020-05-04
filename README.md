@@ -17,9 +17,9 @@ NodeApp que faz upload em um bucket s3 para as alunas da Academia Neon DevOps
 
 * **Exemplo para execução no ambiente final:**
 * **PROD:**  
-	* `docker run -it -p 80:3000 -e NODE_ENV=production -e AWS_ACCESS_KEY="" -e AWS_SECRET_ACCESS_KEY="" -e BUCKET_NAME="" --name app_prod digitalhouse/pi:1.0.0`
+	* `docker run -d -p 80:3000 -e NODE_ENV=production -e AWS_ACCESS_KEY="" -e AWS_SECRET_ACCESS_KEY="" -e BUCKET_NAME="" --name app_prod digitalhouse/pi:1.0.0`
 * **HOMOLOG:** 
-	* `docker run -it -p 3000:3000 -e NODE_ENV=homolog -e AWS_ACCESS_KEY="" -e AWS_SECRET_ACCESS_KEY="" -e BUCKET_NAME=""  --name app_homolog digitalhouse/pi:1.0.0`
+	* `docker run -d -p 3000:3000 -e NODE_ENV=homolog -e AWS_ACCESS_KEY="" -e AWS_SECRET_ACCESS_KEY="" -e BUCKET_NAME=""  --name app_homolog digitalhouse/pi:1.0.0`
 
 
 # TODO
