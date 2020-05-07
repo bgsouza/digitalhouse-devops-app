@@ -143,7 +143,7 @@ pipeline {
                             docker.image('digitalhouse-devops').pull()
                         }
 
-                        echo 'Deploy para Desenvolvimento'
+                        echo 'Deploy para Producao'
                         sh "hostname"
                         sh "docker stop app1"
                         sh "docker rm app1"
