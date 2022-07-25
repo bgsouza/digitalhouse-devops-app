@@ -57,26 +57,37 @@ app.get('/', function(req,res){
     res.render('index', {data:{ambiente: process.env.NODE_ENV}});
 }); 
 
-app.post('/file-upload', upload.single('imageUpload'), (req, res) => {
+app.post('/file-upload', upload.single('imageUpload'), async (req, res) => {
 
     const file = (req.file.originalname);
     console.log('File', req.file)
     
+    try {
+        respUpload = await upload(file, req.file.path)
+        res.redirect(`/?uploadOk=true`);
+    } catch {
+        res.redirect(`/?uploadOk=false`);
+    }
+})
+
+upload = async (file, filePath) => {
     const params = {
         Bucket: process.env.BUCKET_NAME, // pass your bucket name
         // ACL: 'public-read',
         Key: `${file}`,
-        Body: fs.readFileSync(req.file.path)
+        Body: fs.readFileSync(filePath)
     };
-    s3.putObject(params, function(s3Err, data) {
+  
+    s3.upload(params, function(s3Err, data) {
         if (s3Err) { 
             console.log('error', s3Err)
-            throw s3Err
-        }
-        console.log(`File uploaded successfully at ${data.Location}`)
-        res.redirect("/?uploadOk=true");
+            return false
+        } else {
+            console.log(`File uploaded successfully at ${data.Location}`)
+            return true
+        }        
     });
-})
+}
 
 app.get('/api/v1/healthcheck', function(req, res) {
     res.send({
